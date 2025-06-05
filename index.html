@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Inventario TI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'primary': '#1E40AF', // Blue-700
+            'primary-hover': '#1D4ED8', // Blue-600
+            'secondary': '#DB2777', // Pink-600
+            'accent': '#F59E0B', // Amber-500
+            'neutral': '#4B5563', // Gray-600
+            'base-100': '#F9FAFB', // Gray-50
+            'base-200': '#F3F4F6', // Gray-100
+            'base-300': '#E5E7EB', // Gray-200
+          }
+        }
+      }
+    }
+  </script>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.6.0",
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "recharts": "https://esm.sh/recharts@^2.15.3",
+    "xlsx": "https://esm.sh/xlsx@0.18.5"
+  }
+}
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+<style>
+  @media print {
+    body {
+      -webkit-print-color-adjust: exact; /* Chrome, Safari */
+      color-adjust: exact; /* Firefox, Edge */
+    }
+    body * {
+      visibility: hidden;
+    }
+    #root, #root * {
+      visibility: visible;
+    }
+    #root {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+    main {
+      padding-bottom: 0 !important;
+      margin: 0 !important;
+    }
+    .no-print, .no-print * {
+      display: none !important;
+    }
+    .printable-page-title h1 {
+        font-size: 1.5rem; /* Adjust title size for print */
+    }
+    /* Ensure backgrounds are printed if needed, though tailwind colors might need specific setup for print */
+    .bg-base-100 { background-color: #F9FAFB !important; }
+    .bg-base-200 { background-color: #F3F4F6 !important; }
+    
+    /* Specific adjustments for EquipmentDetailPage for better print layout */
+    .equipment-detail-grid {
+      display: block !important; /* Stack sections vertically */
+    }
+    .equipment-detail-grid > div {
+      width: 100% !important;
+      margin-bottom: 1rem;
+      page-break-inside: avoid; /* Avoid breaking sections across pages */
+    }
+    .equipment-image-container img {
+        max-width: 50% !important; /* Control image size in print */
+        max-height: 200px !important;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+    .shadow-lg { box-shadow: none !important; }
+    .rounded-xl { border-radius: 0 !important; border: 1px solid #E5E7EB !important; }
+    .p-6 { padding: 1rem !important; }
+    .sticky { position: static !important; }
+
+    /* General image print styles */
+    img {
+      max-width: 100% !important; /* Ensure images don't overflow */
+      height: auto !important;
+      object-fit: contain;
+      page-break-inside: avoid;
+    }
+  }
+</style>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-base-200">
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
